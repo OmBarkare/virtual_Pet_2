@@ -1,13 +1,17 @@
 var database = firebase.database();
 var foodStock;
-var food, foodStockRef, foodClass;
+var food, foodStockRef, foodObject;
 var test, testRef;
 var foodCount;
 var dogMood;
+var formObject;
+var hour, lastFedHour, lastFedRef, lastFedMin, foodImg;
+var milkBottles = [], milkBottle;
 
 function preload(){
   dogImg = loadImage("images/dogImg.png");
   happyDogImg = loadImage("images/dogImg1.png");
+  foodImg = loadImage("images/Milk.png");
 }
 
 function setup() {
@@ -15,6 +19,7 @@ function setup() {
   foodObject = new Food();
   dog = createSprite(500,350,50,50);
   dogMood = "hungry";
+  formObject = new Form();
 // testFunction();
 }
 
@@ -23,25 +28,24 @@ function draw() {
   background(0);
 
   foodObject.getFoodStock();
-  textSize(15)
-  text("food: "+foodStock, 200, 200);
+  foodObject.display();
 
+  textSize(15)
+  fill("lightblue");
+  text("food: "+foodStock, 100, 175);
   if(dogMood === "hungry"){
     dog.addImage(dogImg);
   }
-
   dog.scale = 0.3;
-
   textSize(20)
-  text("press space to feed the dog",300,100);
 
+  formObject.display();
   drawSprites();
 }
 
-function keyPressed(){
-  if(keyCode===32){
-    foodObject.update(foodStock);
-    dogMood = "happy";
-    dog.addImage(happyDogImg);
-  }  
+async function getTime(){
+  var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON = await response.json();
+  var datetime = responseJSON.datetime;
+  hour = datetime.slice(11,13);
 }
