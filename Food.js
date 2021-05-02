@@ -9,12 +9,15 @@ class Food{
   }
 
   feed(count){
-    if(count <= 0)
+    if(count <= 0){
       count = 0
+    }
 
-    if(count > 0)
-      count -= 1  
-
+    if(count > 0){
+      count -= 1
+      dogMood = "happy";
+      foodState = "eating";
+    }  
     database.ref("/").update({
       Food: count
     });
@@ -43,37 +46,42 @@ class Food{
         x = x + 30;
       }
     }
-/*    for(var i = 0; i <= foodStock; i = i + 1){
-        var x1 = 100;
-        milkBottle = createSprite(100,275,50,50);
-        milkBottle.addImage(foodImg);
-        milkBottle.scale = 0.1
-        milkBottles.push(milkBottle);
-      x1 = x1 + 20;
-    }
-      if(foodStock > 10){
-        for(i = 0; i <= foodStock-10; i = i + 1){
-          var x1 = 100;
-          milkBottles[i] = createSprite(100,275,50,50);
-          milkBottles[i].addImage(foodImg);
-          x1 = x1 + 20;
-     }
-    }*/
   }
 
   makeDogHungry(){
-    if(frameRate()%60 === 0){
-      var n = Math.round(random(1,3));
+    if(foodState === "eating"){
+      food.visible = true;
+      if(frameCount%100 === 0){
+        foodState = "finished";
+        food.visible = false;
+      }
+    }
+    var n = Math.round(random(1,10));
+    if(frameCount%30 === 0 && foodState === "finished"){
       switch(n){
         case 1: dogMood = "happy"
           break;
         case 2: dogMood = "hungry"
-          break;
+        break;
         case 3: dogMood = "happy"
+          break;
+        case 4: dogMood = "happy"
+          break;
+        case 5: dogMood = "hungry"
+          break;
+        case 6: dogMood = "happy"
+        break;
+        case 7: dogMood = "happy"
+          break;
+        case 8: dogMood = "happy"
+          break;
+        case 9: dogMood = "hungry"
+          break;
+        case 10: dogMood = "happy"
           break;
           default:break;
       }
-    }
+    }  
   }
 
 }

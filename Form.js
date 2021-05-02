@@ -15,14 +15,11 @@ class Form{
             getTime();
             if(dogMood === "hungry"){
                 foodObject.feed(foodStock);
-                dogMood = "happy";
-                dog.addImage(happyDogImg);
 //                console.log("pressed");
                 database.ref("/").update({LastFed: time})
             } 
             if(dogMood === "happy"){
-                text("I am not hungry",360,280);
-                foodObject.makeDogHungry();
+                dog.addImage(happyDogImg);
             }
           });
 
@@ -33,6 +30,15 @@ class Form{
             console.log("pressed");
           });
 
+          if(dogMood === "happy"){
+              dog.addImage(happyDogImg);
+              foodObject.makeDogHungry();
+              text(this.name.value()+" is not hungry",570,215);
+            } else {
+              dog.addImage(dogImg);
+              text(this.name.value()+" is hungry",570,215);
+          }
+
           lastFedRef.on("value",function(data){lastFedHour = data.val()});
           textSize(15);
 
@@ -40,9 +46,9 @@ class Form{
           text("last fed "+lastFedHour+":"+minute,100,150);
 //          text("(time is displayed in 24 hour format)",200,150);
 
-          if(this.name != null){
+/*          if(this.name != null){
               dogName = this.name.value();
               text(dogName,580,225);
-          }
+          }*/
     }
 }

@@ -8,6 +8,8 @@ var formObject;
 var time, lastFedHour, lastFedRef, lastFedMin, foodImg;
 var milkBottles = [], milkBottle;
 var dogName;
+var foodState;
+var food;
 
 function preload(){
   dogImg = loadImage("images/dogImg.png");
@@ -20,7 +22,11 @@ function setup() {
   foodObject = new Food();
   dog = createSprite(600,350,50,50);
   dogMood = "hungry";
+  foodState = "finished";
   formObject = new Form();
+  food = createSprite(525,440);
+  food.addImage("bottle",foodImg);
+  food.scale = 0.11
 // testFunction();
 }
 
@@ -38,11 +44,12 @@ function draw() {
     dog.addImage(dogImg);
   }
   dog.scale = 0.3;
-  textSize(20)
+//  textSize(20)
 
   formObject.display();
   drawSprites();
   text("X:"+mouseX+"Y:"+mouseY,mouseX,mouseY);
+  text("give the pet a name before you play!!",275,20);
 }
 
 async function getTime(){
