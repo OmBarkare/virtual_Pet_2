@@ -5,8 +5,9 @@ var test, testRef;
 var foodCount;
 var dogMood;
 var formObject;
-var hour, lastFedHour, lastFedRef, lastFedMin, foodImg;
+var time, lastFedHour, lastFedRef, lastFedMin, foodImg;
 var milkBottles = [], milkBottle;
+var dogName;
 
 function preload(){
   dogImg = loadImage("images/dogImg.png");
@@ -17,7 +18,7 @@ function preload(){
 function setup() {
 	createCanvas(800, 700);
   foodObject = new Food();
-  dog = createSprite(500,350,50,50);
+  dog = createSprite(600,350,50,50);
   dogMood = "hungry";
   formObject = new Form();
 // testFunction();
@@ -41,11 +42,13 @@ function draw() {
 
   formObject.display();
   drawSprites();
+  text("X:"+mouseX+"Y:"+mouseY,mouseX,mouseY);
 }
 
 async function getTime(){
   var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
   var responseJSON = await response.json();
   var datetime = responseJSON.datetime;
-  hour = datetime.slice(11,13);
+  time = datetime.slice(11,16);
+//  minute = datetime.slice(14,16);
 }
