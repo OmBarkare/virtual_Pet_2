@@ -10,13 +10,14 @@ class Form{
         this.feed.position(375,100);
         this.addFood.position(425,100);
 
-        lastFedRef = database.ref("LastFed");
+        lastFedHourRef = database.ref("LastFed/Hour");
+        lastFedMinRef = database.ref("LastFed/Minute");
         this.feed.mousePressed(()=>{
-            lastFedMin = minute();
             if(dogMood === "hungry"){
                 foodObject.feed(foodStock);
 //                console.log("pressed");
-                database.ref("/").update({LastFed: hour()});
+                database.ref("LastFed").update({Hour: hour()});
+                database.ref("LastFed").update({Minute: minute()});
             } 
             if(dogMood === "happy"){
                 dog.addImage(happyDogImg);
@@ -39,7 +40,8 @@ class Form{
               text(this.name.value()+" is hungry",570,215);
           }
 
-          lastFedRef.on("value",function(data){lastFedHour = data.val()});
+          lastFedHourRef.on("value",function(data){lastFedHour = data.val()});
+          lastFedMinRef.on("value",function(data){lastFedMin = data.val()});
           textSize(15);
 
           fill("lightblue");

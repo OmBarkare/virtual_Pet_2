@@ -5,7 +5,7 @@ var test, testRef;
 var foodCount;
 var dogMood;
 var formObject;
-var time, lastFedHour, lastFedRef, lastFedMin, foodImg;
+var time, lastFedHour, lastFedHourRef, lastFedMinRef, lastFedMin, foodImg;
 var milkBottles = [], milkBottle;
 var dogName;
 var foodState;
