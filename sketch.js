@@ -26,6 +26,7 @@ function setup() {
   formObject = new Form();
   food = createSprite(525,440);
   food.addImage("bottle",foodImg);
+  food.visible = false;
   food.scale = 0.11
 // testFunction();
 }
