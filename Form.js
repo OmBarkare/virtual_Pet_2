@@ -12,11 +12,11 @@ class Form{
 
         lastFedRef = database.ref("LastFed");
         this.feed.mousePressed(()=>{
-            getTime();
+            lastFedMin = minute();
             if(dogMood === "hungry"){
                 foodObject.feed(foodStock);
 //                console.log("pressed");
-                database.ref("/").update({LastFed: time})
+                database.ref("/").update({LastFed: hour()});
             } 
             if(dogMood === "happy"){
                 dog.addImage(happyDogImg);
@@ -43,12 +43,12 @@ class Form{
           textSize(15);
 
           fill("lightblue");
-          text("last fed "+lastFedHour+":"+minute,100,150);
+          text("last fed "+lastFedHour+":"+lastFedMin,100,150);
 //          text("(time is displayed in 24 hour format)",200,150);
 
-/*          if(this.name != null){
-              dogName = this.name.value();
-              text(dogName,580,225);
-          }*/
+          if(this.name != null){
+//              dogName = this.name.value();
+//              text(dogName,580,225);
+          }
     }
 }

@@ -49,13 +49,5 @@ function draw() {
   formObject.display();
   drawSprites();
   text("X:"+mouseX+"Y:"+mouseY,mouseX,mouseY);
-  text("give the pet a name before you play!!",275,20);
-}
-
-async function getTime(){
-  var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
-  var responseJSON = await response.json();
-  var datetime = responseJSON.datetime;
-  time = datetime.slice(11,16);
-//  minute = datetime.slice(14,16);
+  text("give the pet a name before you play!!",275,75);
 }
